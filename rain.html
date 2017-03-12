@@ -25,7 +25,6 @@
       var fontSize = 22;
       var drawInterval
       var message = 'neo is a burger'
-      // var message2 = 'or i just start my own company, how hard can it be eh?'
       var currentLetters = []
       var specials = []
       window.addEventListener('resize', init, false);
@@ -35,12 +34,9 @@
         c.width = window.innerWidth
         var specials = []
         setupSpecials()
-        // console.log(c.height, c.width, specials)
         clearAnim()
         createColumns()
         drawInterval = setInterval(function(){ draw() }, 100)
-        console.log(currentLetters)
-        // var animation = setInterval(draw, 900)
       }
 
       function clearAnim ( ) {
@@ -51,11 +47,8 @@
       var columns = Math.round(c.width / fontSize)
       var rows = Math.round(c.height / fontSize)
         for (var x = 0; x < columns; x++) {
-          // if (typeof x === 'number') {
             currentLetters[x] = Math.round(Math.random() * rows)
-          // }
         }
-        // console.log(currentLetters)
       }
 
       function getRandomColor() {
@@ -73,53 +66,36 @@
           var x = fontSize * i
           var y = currentLetters[i] * fontSize
           var text = ''
-
-          // console.log(y)
-
           for (var t=0; t < message.length; t++) {
-            // console.log(specials)
-            // console.log(t)
             var coord = specials[t].coord
-            // console.log(coord[0], x)
-            // console.log(coord[0])
             if (coord[0] === x && coord[1] === y) {
-              // console.log('hit')
               specials[t].active = true
-              // specials[t].active = Math.random() < 0.95
-
-              // text = specials[t].letter
-              // text = message[]
               text = ' '
             }
             if (coord[1] === y) {
-              // console.log('yesss')
             }
           }
           text = text ? text : matrix[Math.floor(Math.random() * matrix.length)]
           ctx.fillStyle = '#ff80bf'
           // ctx.fillStyle = getRandomColor()
           ctx.fillText(text, x, y)
-          // ctx.drawImage('❤️',10,10)
 
           if (currentLetters[i] < 0 && Math.random() > 0.45) {
             currentLetters[i] = Math.round(c.height / fontSize)
           }
           currentLetters[i]--
         }
-        // console.log('asa', message.length)
 
         for (var yy = 0; yy < message.length; yy++) {
           ctx.fillStyle = '#FF99CC'
-          // ctx.fillStyle = 'rgb(204, 0, 204)'
           var l = specials[yy]
-          if (yy === 0) {
-            // console.log(l.active)
-          }
           if (l.active) {
             ctx.fillText(l.letter, l.coord[0], l.coord[1])
             specials[yy].count++
-            if (specials[yy].count > 10) {}
-            specials[yy].active = false
+            if (specials[yy].count > 100) {
+              specials[yy].active = false
+              specials[yy].count = 0
+            }
           }
         }
         fadeCanvasOut()
@@ -142,7 +118,7 @@
         specials.push({
           letter: message[i],
           coord:[(fontSize * (i + xStart) ), yx],
-          active: false
+          active: false,
           count: 0
         })
         // console.log(specials)
