@@ -24,7 +24,7 @@
       var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━┻o^)／(^^)/ (≧∇≦)/(/◕ヮ◕)/(^o^)丿∩(·ω·)∩(·ω·)^ω^'.split('')
       var fontSize = 22;
       var myVar
-      var message = 'hello neo'
+      var message = 'you need to keep your b'
       var currentLetters = []
       var specials = []
       window.addEventListener('resize', init, false);
@@ -42,7 +42,6 @@
         // var animation = setInterval(draw, 900)
       }
 
-      ctx.font = fontSize + "38px Helvetica Bold"
       function clearAnim ( ) {
         clearInterval(myVar)
       }
@@ -57,7 +56,7 @@
       }
 
       function getRandomColor() {
-        var letters = 'FB6';
+        var letters = 'BC';
         var color = '#';
         for (var i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 2)]
@@ -66,6 +65,7 @@
       }
 
       function draw() {
+        ctx.font = "22px Helvetica"
         for (var i = 0; i < currentLetters.length; i++) {
           var x = fontSize * i
           var y = currentLetters[i] * fontSize
@@ -91,7 +91,8 @@
             }
           }
           text = text ? text : matrix[Math.floor(Math.random() * matrix.length)]
-          ctx.fillStyle = getRandomColor()
+          ctx.fillStyle = '#ff80bf'
+          // ctx.fillStyle = getRandomColor()
           ctx.fillText(text, x, y)
 
           if (currentLetters[i] < 0 && Math.random() > 0.45) {
