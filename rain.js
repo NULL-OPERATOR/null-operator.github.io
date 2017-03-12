@@ -1,8 +1,8 @@
-var c = document.getElementById('jauslin')
+var c = document.querySelector('canvas')
 var ctx = c.getContext('2d')
 var drawInterval
 var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━┻o^)／(^^)/ (≧∇≦)/(/◕ヮ◕)/(^o^)丿∩(·ω·)∩(·ω·)^ω^'.split('')
-var message = 'neo is a burger'
+var message = 'oh no'
 var currentLetters = []
 var messageLetters = []
 var currentColour = 0
@@ -52,8 +52,8 @@ function clearDrawInterval () {
 }
 
 function createColumns () {
-  var columns = Math.round(c.width / fontSize)
-  var rows = Math.round(c.height / fontSize)
+  var columns = Math.ceil(c.width / fontSize)
+  var rows = Math.ceil(c.height / fontSize)
   for (var x = 0; x < columns; x++) {
     currentLetters[x] = Math.round(Math.random() * rows)
   }
@@ -102,7 +102,6 @@ function drawMatrixLetters () {
     }
     currentLetters[i]--
     currentColour = currentColour >= gradient.length ? 0 : currentColour + 1
-
   }
 }
 
@@ -127,6 +126,7 @@ function deActivateLetterIfPastCount (index) {
 
 function fadeCanvasOut () {
   ctx.fillStyle = 'rgba(0,0,0,.2)'
+  // ctx.fillStyle = 'rgba(13,15,17,.2)'
   ctx.fillRect(0, 0, c.width, c.height)
 }
 
