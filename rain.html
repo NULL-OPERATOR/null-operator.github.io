@@ -108,12 +108,8 @@
 
     function setupSpecials () {
       specials = []
-      // console.log(c.width / fontSize/ 2)
-      // var xStart =  Math.round(c.width / fontSize /2)
       var xStart = Math.round(c.width / fontSize /2) - Math.round(message.length / 2)
-      // var yx = (Math.round(c.height / fontSize)/2) + (10*)
       var yx = Math.round((c.height / fontSize) / 2) * fontSize
-      // console.log(yx)
       for (var i = 0; i < message.length; i++) {
         specials.push({
           letter: message[i],
@@ -121,13 +117,9 @@
           active: false,
           count: 0
         })
-        // console.log(specials)
       }
     }
-
       init()
-      // setInterval(draw, 90)
-
     </script>
   </body>
 
