@@ -5,7 +5,28 @@ var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━�
 var message = 'neo is a burger'
 var currentLetters = []
 var messageLetters = []
+var currentColour = 0
 var fontSize = 22
+var gradientHalf = [
+  '#FF99CC',
+  '#F291CF',
+  '#E68AD1',
+  '#D982D4',
+  '#CC7AD6',
+  '#BF73D9',
+  '#B26BDB',
+  '#A663DE',
+  '#995CE0',
+  '#8C54E3',
+  '#804CE6',
+  '#7345E8',
+  '#663DEB',
+  '#5936ED',
+  '#4D2EF0',
+  '#4026F2',
+  '#331FF5'
+]
+var gradient = gradientHalf.concat(gradientHalf.reverse())
 
 window.addEventListener('resize', init, false)
 
@@ -47,6 +68,10 @@ function createColumns () {
 //   return color
 // }
 
+// function getNextColour () {
+//
+// }
+
 function draw () {
   drawMatrixLetters()
   drawMessage()
@@ -65,11 +90,10 @@ function drawMatrixLetters () {
         messageLetters[t].active = true
         text = ' '
       }
-      if (coord[1] === y) {
-      }
     }
     text = text ? text : matrix[Math.floor(Math.random() * matrix.length)]
-    ctx.fillStyle = '#ff80bf'
+    ctx.fillStyle = gradient[currentColour]
+    // ctx.fillStyle = '#ff80bf'
     // ctx.fillStyle = getRandomColor()
     ctx.fillText(text, x, y)
 
@@ -77,6 +101,8 @@ function drawMatrixLetters () {
       currentLetters[i] = Math.round(c.height / fontSize)
     }
     currentLetters[i]--
+    currentColour = currentColour >= gradient.length ? 0 : currentColour + 1
+
   }
 }
 
@@ -114,6 +140,8 @@ function setupMessage () {
       coord: [(fontSize * (i + xStart)), yx],
       active: false,
       count: 0
+      // colourIndex: Math.round(Math.random() * gradient.length)
+
     })
   }
 }
