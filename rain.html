@@ -1,0 +1,147 @@
+<html>
+
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: black;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="jauslin"></canvas>
+
+    <script>
+      var c = document.getElementById("jauslin")
+      var ctx = c.getContext("2d")
+      var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━┻o^)／(^^)/ (≧∇≦)/(/◕ヮ◕)/(^o^)丿∩(·ω·)∩(·ω·)^ω^'.split('')
+      var fontSize = 22;
+      var myVar
+      var message = 'hello neo'
+      var currentLetters = []
+      var specials = []
+      window.addEventListener('resize', init, false);
+
+      function init () {
+        c.height = window.innerHeight
+        c.width = window.innerWidth
+        var specials = []
+        setupSpecials()
+        // console.log(c.height, c.width, specials)
+        clearAnim()
+        createColumns()
+        myVar = setInterval(function(){ draw() }, 100)
+        // console.log(currentLetters)
+        // var animation = setInterval(draw, 900)
+      }
+
+      ctx.font = fontSize + "38px Helvetica Bold"
+      function clearAnim ( ) {
+        clearInterval(myVar)
+      }
+
+      function createColumns () {
+      var columns = Math.round(c.width / fontSize)
+      var rows = Math.round(c.height / fontSize)
+        for (var x = 0; x < columns; x++) {
+          currentLetters[x] = Math.round(Math.random() * rows)
+        }
+        // console.log(currentLetters)
+      }
+
+      function getRandomColor() {
+        var letters = 'FB6';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 2)]
+        }
+        return color;
+      }
+
+      function draw() {
+        for (var i = 0; i < currentLetters.length; i++) {
+          var x = fontSize * i
+          var y = currentLetters[i] * fontSize
+          var text = ''
+
+          // console.log(y)
+
+          for (var t=0; t < message.length; t++) {
+            // console.log(specials)
+            // console.log(t)
+            var coord = specials[t].coord
+            // console.log(coord[0], x)
+            // console.log(coord[0])
+            if (coord[0] === x && coord[1] === y) {
+              // console.log('hit')
+              specials[t].active = true
+              // text = specials[t].letter
+              // text = message[]
+              text = ' '
+            }
+            if (coord[1] === y) {
+              // console.log('yesss')
+            }
+          }
+          text = text ? text : matrix[Math.floor(Math.random() * matrix.length)]
+          ctx.fillStyle = getRandomColor()
+          ctx.fillText(text, x, y)
+
+          if (currentLetters[i] < 0 && Math.random() > 0.45) {
+            currentLetters[i] = Math.round(c.height / fontSize)
+          }
+          currentLetters[i]--
+        }
+        // console.log('asa', message.length)
+
+        for (var yy = 0; yy < message.length; yy++) {
+          ctx.fillStyle = '#b3e6ff'
+          // ctx.fillStyle = 'rgb(204, 0, 204)'
+          var l = specials[yy]
+          if (yy === 0) {
+            // console.log(l.active)
+          }
+          if (l.active) {
+            ctx.fillText(l.letter, l.coord[0], l.coord[1])
+          }
+        }
+        fadeCanvasOut()
+      }
+
+    function fadeCanvasOut () {
+      ctx.fillStyle = "rgba(0,0,0,.2)"
+      ctx.fillRect(0, 0, c.width, c.height)
+    }
+
+    function setupSpecials () {
+      specials = []
+      // console.log(c.width / fontSize/ 2)
+      // var xStart =  Math.round(c.width / fontSize /2)
+      var xStart = Math.round(c.width / fontSize /2) - Math.round(message.length / 2)
+      // var yx = (Math.round(c.height / fontSize)/2) + (10*)
+      var yx = Math.round((c.height / fontSize) / 2) * fontSize
+      // console.log(yx)
+      for (var i = 0; i < message.length; i++) {
+        specials.push({
+          letter: message[i],
+          coord:[(fontSize * (i + xStart) ), yx],
+          active: false
+        })
+        // console.log(specials)
+      }
+    }
+
+      init()
+      // setInterval(draw, 90)
+
+    </script>
+  </body>
+
+</html>
