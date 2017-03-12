@@ -24,7 +24,7 @@
       var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━┻o^)／(^^)/ (≧∇≦)/(/◕ヮ◕)/(^o^)丿∩(·ω·)∩(·ω·)^ω^'.split('')
       var fontSize = 22;
       var myVar
-      var message = 'you need to keep your b'
+      var message = 'neo was a dealer'
       var currentLetters = []
       var specials = []
       window.addEventListener('resize', init, false);
@@ -93,7 +93,8 @@
           text = text ? text : matrix[Math.floor(Math.random() * matrix.length)]
           ctx.fillStyle = '#ff80bf'
           // ctx.fillStyle = getRandomColor()
-          ctx.fillText(text, x, y)
+          // ctx.fillText(text, x, y)
+          // ctx.drawImage('❤️',10,10)
 
           if (currentLetters[i] < 0 && Math.random() > 0.45) {
             currentLetters[i] = Math.round(c.height / fontSize)
