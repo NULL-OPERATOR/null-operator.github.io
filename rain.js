@@ -47,7 +47,7 @@ function setCanvasSize () {
   c.width = window.innerWidth
 }
 
-function setDrawInterval () {
+function clearDrawInterval () {
   clearInterval(drawInterval)
 }
 
