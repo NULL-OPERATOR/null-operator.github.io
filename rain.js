@@ -31,27 +31,27 @@ var gradient = gradientHalf.concat(gradientHalf.reverse())
 window.addEventListener('resize', init, false)
 
 function init () {
-  resetCanvasSize()
-  setupMessage()
   clearDrawInterval()
-  createColumns()
-  createDrawInterval()
+  setCanvasSize()
+  setMessage()
+  setColumns()
+  setDrawInterval()
 }
 
-function createDrawInterval () {
+function setDrawInterval () {
   drawInterval = setInterval(function () { draw() }, 100)
 }
 
-function resetCanvasSize () {
+function setCanvasSize () {
   c.height = window.innerHeight
   c.width = window.innerWidth
 }
 
-function clearDrawInterval () {
+function setDrawInterval () {
   clearInterval(drawInterval)
 }
 
-function createColumns () {
+function setColumns () {
   var columns = Math.ceil(c.width / fontSize)
   var rows = Math.ceil(c.height / fontSize)
   for (var x = 0; x < columns; x++) {
@@ -59,18 +59,14 @@ function createColumns () {
   }
 }
 
-// function getRandomColor () {
-//   var letters = 'BC'
-//   var color = '#'
-//   for (var i = 0; i < 6; i++) {
-//     color += letters[Math.floor(Math.random() * 2)]
-//   }
-//   return color
-// }
-
-// function getNextColour () {
-//
-// }
+function getRandomColor () {
+  var letters = 'BC'
+  var color = '#'
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 2)]
+  }
+  return color
+}
 
 function draw () {
   drawMatrixLetters()
@@ -130,7 +126,7 @@ function fadeCanvasOut () {
   ctx.fillRect(0, 0, c.width, c.height)
 }
 
-function setupMessage () {
+function setMessage () {
   messageLetters = []
   var xStart = Math.round(c.width / fontSize / 2) - Math.round(message.length / 2)
   var yx = Math.round((c.height / fontSize) / 2) * fontSize
