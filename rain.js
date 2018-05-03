@@ -2,7 +2,7 @@ var c = document.querySelector('canvas')
 var ctx = c.getContext('2d')
 var drawInterval
 var matrix = 'トウキョウjauslin❤️^_^(°o°)(ノಠ益ಠ)ノ彡┻━┻o^)／(^^)/ (≧∇≦)/(/◕ヮ◕)/(^o^)丿∩(·ω·)∩(·ω·)^ω^'.split('')
-var message = 'JAUSLIN INC.'
+var message = 'intergalactic planetary'
 var currentLetters = []
 var messageLetters = []
 var currentColour = 0
